@@ -27,10 +27,10 @@ public class DrinkController {
     }
 
 
-    @GetMapping("/{id}")
-    public ResponseEntity<DrinkReadDTO> getDrinkByID(@PathVariable UUID id)
+    @GetMapping("/{name}")
+    public ResponseEntity<DrinkReadDTO> getDrinkByName(@PathVariable String name)
     {
-        Drink drink = drinkService.getDrinkById(id);
+        Drink drink = drinkService.getDrinkByName(name);
         if(drink != null)
         {
             return ResponseEntity.ok(mapToDrinkReadDTO(drink));
@@ -67,8 +67,8 @@ public class DrinkController {
         return ResponseEntity.status(HttpStatus.CREATED).body(mapToDrinkReadDTO(newDrink));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<DrinkReadDTO> updateDrink(@PathVariable UUID id, @RequestBody DrinkCreateUpdateDTO drinkDTO)
+    @PutMapping("/{name}")
+    public ResponseEntity<DrinkReadDTO> updateDrink(@PathVariable String name, @RequestBody DrinkCreateUpdateDTO drinkDTO)
     {
         Brand brand = brandService.getBrandById(drinkDTO.getBrandId());
         if(brand == null)
@@ -76,32 +76,24 @@ public class DrinkController {
             return ResponseEntity.notFound().build();
         }
 
-        Drink existingDrink = drinkService.getDrinkById(id);
+        Drink existingDrink = drinkService.getDrinkByName(name);
         if(existingDrink == null)
         {
             return ResponseEntity.notFound().build();
         }
 
         Drink updatedDrink = mapToDrink(drinkDTO);
-        updatedDrink.setId(id);
-        drinkService.updateDrink(id,updatedDrink);
+        updatedDrink.setName(name);
+        drinkService.updateDrink(name,updatedDrink);
         return ResponseEntity.ok(mapToDrinkReadDTO(updatedDrink));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteDrink(@PathVariable UUID id)
-    {
-        drinkService.deleteDrink(id);
-        return ResponseEntity.noContent().build();
-    }
-
-    @DeleteMapping("/name/{name}")
+    @DeleteMapping("/{name}")
     public ResponseEntity<Void> deleteDrink(@PathVariable String name)
     {
         drinkService.deleteDrink(name);
         return ResponseEntity.noContent().build();
     }
-
 
     private DrinkReadDTO mapToDrinkReadDTO(Drink drink)
     {

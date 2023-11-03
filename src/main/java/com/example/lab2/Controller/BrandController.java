@@ -22,9 +22,9 @@ public class BrandController {
         this.brandService = brandService;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<BrandReadDTO> getBrandById(@PathVariable UUID id) {
-        Brand brand = brandService.getBrandById(id);
+    @GetMapping("/{name}")
+    public ResponseEntity<BrandReadDTO> getBrandById(@PathVariable String name) {
+        Brand brand = brandService.getBrandByName(name);
         if (brand != null) {
             return ResponseEntity.ok(mapToBrandReadDTO(brand));
         } else {
@@ -48,22 +48,23 @@ public class BrandController {
         return ResponseEntity.status(HttpStatus.CREATED).body(mapToBrandReadDTO(newBrand));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<BrandReadDTO> updateBrand(@PathVariable UUID id, @RequestBody BrandCreateUpdateDTO brandDTO) {
-        Brand existingBrand = brandService.getBrandById(id);
+    @PutMapping("/{name}")
+    public ResponseEntity<BrandReadDTO> updateBrand(@PathVariable String name, @RequestBody BrandCreateUpdateDTO brandDTO) {
+        Brand existingBrand = brandService.getBrandByName(name);
         if (existingBrand == null) {
             return ResponseEntity.notFound().build();
         }
 
+
         Brand updatedBrand = mapToBrand(brandDTO);
-        updatedBrand.setId(id);
-        brandService.updateBrand(id, updatedBrand);
+        updatedBrand.setName(name);
+        brandService.updateBrand(name, updatedBrand);
         return ResponseEntity.ok(mapToBrandReadDTO(updatedBrand));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteBrand(@PathVariable UUID id) {
-        brandService.deleteBrand(id);
+    @DeleteMapping("/{name}")
+    public ResponseEntity<Void> deleteBrand(@PathVariable String name) {
+        brandService.deleteBrand(name);
         return ResponseEntity.noContent().build();
     }
 

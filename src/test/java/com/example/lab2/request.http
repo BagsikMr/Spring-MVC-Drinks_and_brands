@@ -1,0 +1,72 @@
+###
+### BrandController Requests
+###
+localhost
+
+### GET all brands //DO
+GET http://localhost:8080/api/brands
+Accept: application/json
+
+### POST (create) a new brand //DO
+
+POST http://localhost:8080/api/brands
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "New Brand",
+  "country": "New Country"
+}
+
+### PUT (update) a brand by name //TODO
+PUT http://localhost:8080/api/brands/Fanta
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Updated Brand",
+  "country": "Updated Country"
+}
+
+### DELETE a brand by name //DO
+DELETE http://localhost:8080/api/brands/Pepsi
+
+###
+### DrinkController Requests
+###
+localhost
+
+### GET a drink by name //DO
+GET http://localhost:8080/api/drinks/Fanta_orange
+Accept: application/json
+
+### GET all drinks //DO
+GET http://localhost:8080/api/drinks
+Accept: application/json
+
+### POST (create) a new drink //DO
+POST http://localhost:8080/api/drinks
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "New Drink",
+  "price": 10,
+  "year": "2023",
+  "brandId": "0b64ceb9-444f-43ca-8208-668e6f5eaeee"
+}
+
+### PUT (update) a drink by name //TODO
+PUT http://localhost:8080/api/drinks/Fanta_orange
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Fanta_orange",
+  "price": 12,
+  "year": "2021",
+  "brandId": "0b64ceb9-444f-43ca-8208-668e6f5eaeee"
+}
+
+### DELETE a drink by name //TODO
+DELETE http://localhost:8080/api/drinks/name/Pepsi_classic

@@ -46,6 +46,16 @@ public class DrinkService {
         }
     }
 
+    public void updateDrink(String name, Drink updatedDrink)
+    {
+        UUID id = drinkRepository.findByName(name).getId();
+        if(drinkRepository.existsById(id))
+        {
+            updatedDrink.setId(id);
+            drinkRepository.save(updatedDrink);
+        }
+    }
+
     public void deleteDrink(UUID id)
     {
         Drink drink = drinkRepository.findById(id).orElse(null);

@@ -41,6 +41,13 @@ public class BrandService {
             brandRepository.save(updatedBrand);
         }
     }
+    public void updateBrand(String name, Brand updatedBrand) {
+        UUID id = brandRepository.findByName(name).getId();
+        if (brandRepository.existsById(id)) {
+            updatedBrand.setId(id);
+            brandRepository.save(updatedBrand);
+        }
+    }
 
     public void deleteBrand(UUID id) {
         Brand brand = brandRepository.findById(id).orElse(null);
