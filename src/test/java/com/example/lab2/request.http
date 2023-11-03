@@ -68,5 +68,5 @@ Accept: application/json
   "brandId": "0b64ceb9-444f-43ca-8208-668e6f5eaeee"
 }
 
-### DELETE a drink by name //TODO
-DELETE http://localhost:8080/api/drinks/name/Pepsi_classic
+### DELETE a drink by name //DO
+DELETE http://localhost:8080/api/drinks/Pepsi_classic
