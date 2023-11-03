@@ -43,10 +43,24 @@ public class BrandService {
     }
     public void updateBrand(String name, Brand updatedBrand) {
         UUID id = brandRepository.findByName(name).getId();
-        if (brandRepository.existsById(id)) {
-            updatedBrand.setId(id);
-            brandRepository.save(updatedBrand);
+        Brand existingBrand = brandRepository.findByName(name);
+        if(existingBrand != null)
+        {
+            updatedBrand.setId(existingBrand.getId());
+            existingBrand.setName(updatedBrand.getName());
+            existingBrand.setCountry(updatedBrand.getCountry());
+
+            List<Drink> drinks = existingBrand.getDrinks();
+            if(drinks != null)
+            {
+                for (Drink drink : drinks)
+                {
+                    drink.setBrand(existingBrand);
+                }
+            }
+            brandRepository.save(existingBrand);
         }
+
     }
 
     public void deleteBrand(UUID id) {

@@ -70,12 +70,13 @@ public class DrinkController {
     @PutMapping("/{name}")
     public ResponseEntity<DrinkReadDTO> updateDrink(@PathVariable String name, @RequestBody DrinkCreateUpdateDTO drinkDTO)
     {
+        /*
         Brand brand = brandService.getBrandById(drinkDTO.getBrandId());
         if(brand == null)
         {
             return ResponseEntity.notFound().build();
         }
-
+        */
         Drink existingDrink = drinkService.getDrinkByName(name);
         if(existingDrink == null)
         {
@@ -83,7 +84,8 @@ public class DrinkController {
         }
 
         Drink updatedDrink = mapToDrink(drinkDTO);
-        updatedDrink.setName(name);
+        updatedDrink.setId(existingDrink.getId());
+        updatedDrink.setBrand(existingDrink.getBrand());
         drinkService.updateDrink(name,updatedDrink);
         return ResponseEntity.ok(mapToDrinkReadDTO(updatedDrink));
     }

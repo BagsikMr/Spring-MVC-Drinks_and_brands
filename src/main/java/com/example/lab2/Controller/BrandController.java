@@ -50,14 +50,14 @@ public class BrandController {
 
     @PutMapping("/{name}")
     public ResponseEntity<BrandReadDTO> updateBrand(@PathVariable String name, @RequestBody BrandCreateUpdateDTO brandDTO) {
+
         Brand existingBrand = brandService.getBrandByName(name);
         if (existingBrand == null) {
             return ResponseEntity.notFound().build();
         }
 
-
         Brand updatedBrand = mapToBrand(brandDTO);
-        updatedBrand.setName(name);
+        updatedBrand.setId(existingBrand.getId());
         brandService.updateBrand(name, updatedBrand);
         return ResponseEntity.ok(mapToBrandReadDTO(updatedBrand));
     }
