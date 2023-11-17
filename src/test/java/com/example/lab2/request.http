@@ -7,6 +7,10 @@ localhost
 GET http://localhost:8080/api/brands
 Accept: application/json
 
+### GET brand by name
+GET http://localhost:8080/api/brands/Pepsi
+Accept: application/json
+
 ### POST (create) a new brand
 
 POST http://localhost:8080/api/brands
@@ -68,4 +72,4 @@ Accept: application/json
 }
 
 ### DELETE a drink by name
-DELETE http://localhost:8080/api/drinks/Fonta
+DELETE http://localhost:8080/api/drinks/Fanta

@@ -70,13 +70,6 @@ public class DrinkController {
     @PutMapping("/{name}")
     public ResponseEntity<DrinkReadDTO> updateDrink(@PathVariable String name, @RequestBody DrinkCreateUpdateDTO drinkDTO)
     {
-        /*
-        Brand brand = brandService.getBrandById(drinkDTO.getBrandId());
-        if(brand == null)
-        {
-            return ResponseEntity.notFound().build();
-        }
-        */
         Drink existingDrink = drinkService.getDrinkByName(name);
         if(existingDrink == null)
         {

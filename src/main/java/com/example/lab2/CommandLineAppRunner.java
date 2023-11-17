@@ -35,7 +35,7 @@ public class CommandLineAppRunner implements CommandLineRunner{
             System.out.println("add_drink - Add a new drink");
             System.out.println("add_brand - Add a new brand");
             System.out.println("delete_drink - Delete an existing drink");
-            System.out.println("exit_brand - Delete an existing brand");
+            System.out.println("delete_brand - Delete an existing brand");
             System.out.println("exit - Stop the application");
 
             System.out.print("Enter a command: ");
@@ -107,6 +107,7 @@ public class CommandLineAppRunner implements CommandLineRunner{
 
                 case "exit":
                     isRunning = false;
+
                     break;
 
                 default:
@@ -116,6 +117,7 @@ public class CommandLineAppRunner implements CommandLineRunner{
         }
 
         System.out.println("Exiting the application.");
+        System.exit(0);
     }
 
 }

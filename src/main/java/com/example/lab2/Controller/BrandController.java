@@ -2,6 +2,7 @@ package com.example.lab2.Controller;
 
 import com.example.lab2.Class.*;
 import com.example.lab2.Service.*;
+import org.apache.coyote.Response;
 import  org.springframework.http.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -63,7 +64,20 @@ public class BrandController {
     }
 
     @DeleteMapping("/{name}")
-    public ResponseEntity<Void> deleteBrand(@PathVariable String name) {
+    public ResponseEntity<?> deleteBrand(@PathVariable String name) {
+
+        Brand existingBrand = brandService.getBrandByName(name);
+        if(existingBrand == null)
+        {
+            return ResponseEntity.notFound().build();
+        }
+
+        List<Drink> drinks = existingBrand.getDrinks();
+        if(drinks!=null && !drinks.isEmpty())
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Cannot delete brand with associated drinks.");
+        }
         brandService.deleteBrand(name);
         return ResponseEntity.noContent().build();
     }
