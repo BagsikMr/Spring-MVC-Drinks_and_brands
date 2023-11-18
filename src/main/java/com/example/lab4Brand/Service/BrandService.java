@@ -1,6 +1,7 @@
 package com.example.lab4Brand.Service;
 
 import com.example.lab4Brand.Class.*;
+import com.example.lab4Brand.Event.BrandEventRepository;
 import com.example.lab4Brand.Repository.BrandRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,10 +11,12 @@ import java.util.*;
 @Service
 public class BrandService {
     private final BrandRepository brandRepository;
+    private final BrandEventRepository brandEventRepository;
 
     @Autowired
-    public BrandService(BrandRepository brandRepository) {
+    public BrandService(BrandRepository brandRepository,BrandEventRepository brandEventRepository) {
         this.brandRepository = brandRepository;
+        this.brandEventRepository = brandEventRepository;
     }
 
     public List<Brand> getAllBrands() {
@@ -56,12 +59,14 @@ public class BrandService {
         Brand brand = brandRepository.findById(id).orElse(null);
         if (brand != null) {
             brandRepository.deleteById(id);
+            brandEventRepository.deleteBrand(brand.getId());
         }
     }
     public void deleteBrand(String name) {
         Brand brand = brandRepository.findByName(name);
         if (brand != null) {
             brandRepository.deleteById(brand.getId());
+            brandEventRepository.deleteBrand(brand.getId());
         }
     }
 
