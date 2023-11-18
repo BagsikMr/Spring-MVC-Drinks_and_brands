@@ -1,4 +1,4 @@
-package com.example.lab2;
+package com.example.lab4drink;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package com.example.lab2.Class;
+package com.example.lab4drink.Class;
 
 import java.util.*;
 import jakarta.persistence.*;
@@ -28,7 +28,7 @@ public class Drink implements Serializable{
 
     public String toString()
     {
-        return "Drink: " + name + ", made by " + brand.getName() + " in " + year + ". ID: " + id;
+        return "Drink: " + name + " in " + year + ". ID: " + id + " BrandId: " + brand.getId();
     }
 
 }

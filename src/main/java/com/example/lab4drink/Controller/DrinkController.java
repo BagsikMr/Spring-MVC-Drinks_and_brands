@@ -1,15 +1,14 @@
-package com.example.lab2.Controller;
+package com.example.lab4drink.Controller;
 
 
-import com.example.lab2.Class.*;
-import com.example.lab2.Service.*;
+import com.example.lab4drink.Class.*;
+import com.example.lab4drink.Service.*;
 import  org.springframework.http.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.example.lab2.DTO.*;
+import com.example.lab4drink.DTO.*;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
@@ -95,7 +94,7 @@ public class DrinkController {
         return DrinkReadDTO.builder()
                 .id(drink.getId())
                 .name(drink.getName())
-                .brand(mapToBrandReadDTO(drink.getBrand())) //TODO tutaj jest
+                .brand(drink.getBrand()) //TODO tutaj jest
                 .price(drink.getPrice())
                 .year(drink.getYear())
                 .build();
@@ -110,8 +109,6 @@ public class DrinkController {
     private BrandReadDTO mapToBrandReadDTO(Brand brand){  //TODO potem to podmień jak będziesz miał w Controlerze brandu chyba
         return BrandReadDTO.builder()
                 .id(brand.getId())
-                .name(brand.getName())
-                .country(brand.getCountry())
                 .build();
     }
 

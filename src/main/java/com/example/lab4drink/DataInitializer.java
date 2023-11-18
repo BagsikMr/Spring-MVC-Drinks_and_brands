@@ -1,9 +1,9 @@
-package com.example.lab2;
+package com.example.lab4drink;
 
-import com.example.lab2.Class.Brand;
-import com.example.lab2.Class.Drink;
-import com.example.lab2.Service.BrandService;
-import com.example.lab2.Service.DrinkService;
+import com.example.lab4drink.Class.Brand;
+import com.example.lab4drink.Class.Drink;
+import com.example.lab4drink.Service.BrandService;
+import com.example.lab4drink.Service.DrinkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
@@ -20,24 +20,14 @@ public class DataInitializer implements InitializingBean{
         this.brandService = brandService;
     }
 
-    /*
-    @PostConstruct
-    public void initData(){
-    */
     @Override
     public void afterPropertiesSet() throws Exception {
 
         Brand Pepsi = Brand.builder()
-                .name("Pepsi")
-                .country("USA")
                 .build();
         Brand Fanta = Brand.builder()
-                .name("Fanta")
-                .country("Germany")
                 .build();
         Brand CocaCola = Brand.builder()
-                .name("Coca-Cola")
-                .country("USA")
                 .build();
 
         brandService.createBrand(Pepsi);

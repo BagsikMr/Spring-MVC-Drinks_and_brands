@@ -1,6 +1,5 @@
-package com.example.lab2.DTO;
+package com.example.lab4drink.DTO;
 
-import jakarta.persistence.*;
 import lombok.*;
 import java.io.Serializable;
 import java.util.*;

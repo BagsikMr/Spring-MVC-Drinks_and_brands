@@ -1,4 +1,4 @@
-package com.example.lab2.Class;
+package com.example.lab4drink.Class;
 
 import lombok.*;
 import jakarta.persistence.*;
@@ -17,15 +17,7 @@ public class Brand implements Serializable{
     @GeneratedValue(generator = "UUID")
     private UUID id;
 
-    private String name;
-    private String country;
-
     @OneToMany(mappedBy = "brand", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Drink> drinks;
 
-    public Brand(String setName, String setCountry)
-    {
-        this.name = setName;
-        this.country = setCountry;
-    }
 }

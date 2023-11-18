@@ -1,7 +1,5 @@
-package com.example.lab2.DTO;
+package com.example.lab4drink.DTO;
 
-import com.example.lab2.Class.Brand;
-import jakarta.persistence.*;
 import lombok.*;
 import java.io.Serializable;
 import java.util.*;
@@ -10,8 +8,8 @@ import java.util.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class BrandCreateUpdateDTO implements Serializable {
+public class BrandReadDTO implements Serializable {
+    private UUID id;
     private String name;
     private String country;
 }
-

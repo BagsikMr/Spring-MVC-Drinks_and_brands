@@ -1,8 +1,8 @@
-package com.example.lab2.Service;
+package com.example.lab4drink.Service;
 
-import com.example.lab2.Class.*;
-import com.example.lab2.Repository.BrandRepository;
-import com.example.lab2.Repository.DrinkRepository;
+import com.example.lab4drink.Class.*;
+import com.example.lab4drink.Repository.BrandRepository;
+import com.example.lab4drink.Repository.DrinkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

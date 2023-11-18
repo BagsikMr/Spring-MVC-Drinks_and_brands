@@ -1,8 +1,8 @@
-package com.example.lab2.Service;
+package com.example.lab4drink.Service;
 
-import com.example.lab2.Class.*;
-import com.example.lab2.Repository.BrandRepository;
-import com.example.lab2.Repository.DrinkRepository;
+import com.example.lab4drink.Class.*;
+import com.example.lab4drink.Repository.BrandRepository;
+import com.example.lab4drink.Repository.DrinkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +19,6 @@ public class BrandService {
         this.drinkRepository = drinkRepository;
     }
 
-    public List<Brand> getAllBrands() {
-        return brandRepository.findAll();
-    }
-
     public Brand getBrandById(UUID id) {
         return brandRepository.findById(id).orElse(null);
     }
@@ -35,33 +31,6 @@ public class BrandService {
         brandRepository.save(brand);
     }
 
-    public void updateBrand(UUID id, Brand updatedBrand) {
-        if (brandRepository.existsById(id)) {
-            updatedBrand.setId(id);
-            brandRepository.save(updatedBrand);
-        }
-    }
-    public void updateBrand(String name, Brand updatedBrand) {
-        UUID id = brandRepository.findByName(name).getId();
-        Brand existingBrand = brandRepository.findByName(name);
-        if(existingBrand != null)
-        {
-            updatedBrand.setId(existingBrand.getId());
-            existingBrand.setName(updatedBrand.getName());
-            existingBrand.setCountry(updatedBrand.getCountry());
-
-            List<Drink> drinks = existingBrand.getDrinks();
-            if(drinks != null)
-            {
-                for (Drink drink : drinks)
-                {
-                    drink.setBrand(existingBrand);
-                }
-            }
-            brandRepository.save(existingBrand);
-        }
-
-    }
 
     public void deleteBrand(UUID id) {
         Brand brand = brandRepository.findById(id).orElse(null);

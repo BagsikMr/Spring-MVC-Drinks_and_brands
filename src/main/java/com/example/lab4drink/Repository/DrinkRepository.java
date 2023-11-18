@@ -1,7 +1,7 @@
-package com.example.lab2.Repository;
+package com.example.lab4drink.Repository;
 
-import com.example.lab2.Class.Brand;
-import com.example.lab2.Class.Drink;
+import com.example.lab4drink.Class.Brand;
+import com.example.lab4drink.Class.Drink;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

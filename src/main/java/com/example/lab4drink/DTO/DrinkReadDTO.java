@@ -1,6 +1,6 @@
-package com.example.lab2.DTO;
+package com.example.lab4drink.DTO;
 
-import jakarta.persistence.*;
+import com.example.lab4drink.Class.Brand;
 import lombok.*;
 import java.io.Serializable;
 import java.util.*;
@@ -12,7 +12,7 @@ import java.util.*;
 public class DrinkReadDTO implements Serializable {
     private UUID id;
     private String name;
-    private BrandReadDTO brand;
+    private Brand brand;
     private int price;
     private String year;
 }
