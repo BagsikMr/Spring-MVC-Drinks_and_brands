@@ -1,8 +1,3 @@
-###
-### BrandController Requests
-###
-localhost
-
 ### GET all brands
 GET http://localhost:8082/api/brands
 Accept: application/json
@@ -14,27 +9,6 @@ Accept: application/json
 ### GET single brand by name, not existing
 GET http://localhost:8082/api/brands/DrPepper
 Accept: application/json
-
-### POST (create) a new brand
-
-POST http://localhost:8082/api/brands
-Content-Type: application/json
-Accept: application/json
-
-{
-  "name": "New Brand",
-  "country": "New Country"
-}
-
-### PUT (update) a brand by name
-PUT http://localhost:8082/api/brands/Fanta
-Content-Type: application/json
-Accept: application/json
-
-{
-  "name": "Updated Brand",
-  "country": "Updated Country"
-}
 
 ### DELETE a brand by name
 DELETE http://localhost:8082/api/brands/Pepsi

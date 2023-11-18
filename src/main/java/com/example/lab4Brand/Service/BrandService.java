@@ -20,8 +20,8 @@ public class BrandService {
         return brandRepository.findAll();
     }
 
-    public Brand getBrandById(UUID id) {
-        return brandRepository.findById(id).orElse(null);
+    public Optional<Brand> getBrandById(UUID id) {
+        return brandRepository.findById(id);
     }
     public Brand getBrandByName(String name)
     {
