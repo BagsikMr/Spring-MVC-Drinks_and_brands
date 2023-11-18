@@ -1,8 +1,7 @@
-package com.example.lab2.Service;
+package com.example.lab4Brand.Service;
 
-import com.example.lab2.Class.*;
-import com.example.lab2.Repository.BrandRepository;
-import com.example.lab2.Repository.DrinkRepository;
+import com.example.lab4Brand.Class.*;
+import com.example.lab4Brand.Repository.BrandRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,12 +10,10 @@ import java.util.*;
 @Service
 public class BrandService {
     private final BrandRepository brandRepository;
-    private final DrinkRepository drinkRepository;
 
     @Autowired
-    public BrandService(BrandRepository brandRepository, DrinkRepository drinkRepository) {
+    public BrandService(BrandRepository brandRepository) {
         this.brandRepository = brandRepository;
-        this.drinkRepository = drinkRepository;
     }
 
     public List<Brand> getAllBrands() {
@@ -50,14 +47,6 @@ public class BrandService {
             existingBrand.setName(updatedBrand.getName());
             existingBrand.setCountry(updatedBrand.getCountry());
 
-            List<Drink> drinks = existingBrand.getDrinks();
-            if(drinks != null)
-            {
-                for (Drink drink : drinks)
-                {
-                    drink.setBrand(existingBrand);
-                }
-            }
             brandRepository.save(existingBrand);
         }
 
@@ -66,20 +55,12 @@ public class BrandService {
     public void deleteBrand(UUID id) {
         Brand brand = brandRepository.findById(id).orElse(null);
         if (brand != null) {
-            List<Drink> drinks = brand.getDrinks();
-            if (drinks != null) {
-                drinkRepository.deleteAll(drinks);
-            }
             brandRepository.deleteById(id);
         }
     }
     public void deleteBrand(String name) {
         Brand brand = brandRepository.findByName(name);
         if (brand != null) {
-            List<Drink> drinks = brand.getDrinks();
-            if (drinks != null) {
-                drinkRepository.deleteAll(drinks);
-            }
             brandRepository.deleteById(brand.getId());
         }
     }

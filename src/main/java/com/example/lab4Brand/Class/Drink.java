@@ -1,4 +1,4 @@
-package com.example.lab2.Class;
+package com.example.lab4Brand.Class;
 
 import java.util.*;
 import jakarta.persistence.*;

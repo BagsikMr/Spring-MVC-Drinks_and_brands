@@ -1,0 +1,36 @@
+###
+### BrandController Requests
+###
+localhost
+
+### GET all brands
+GET http://localhost:8080/api/brands
+Accept: application/json
+
+### GET brand by name
+GET http://localhost:8080/api/brands/Pepsi
+Accept: application/json
+
+### POST (create) a new brand
+
+POST http://localhost:8080/api/brands
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "New Brand",
+  "country": "New Country"
+}
+
+### PUT (update) a brand by name
+PUT http://localhost:8080/api/brands/Fanta
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Updated Brand",
+  "country": "Updated Country"
+}
+
+### DELETE a brand by name
+DELETE http://localhost:8080/api/brands/Pepsi

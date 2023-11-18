@@ -1,15 +1,13 @@
-package com.example.lab2.Controller;
+package com.example.lab4Brand.Controller;
 
-import com.example.lab2.Class.*;
-import com.example.lab2.Service.*;
-import org.apache.coyote.Response;
+import com.example.lab4Brand.Class.*;
+import com.example.lab4Brand.Service.*;
 import  org.springframework.http.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.example.lab2.DTO.*;
+import com.example.lab4Brand.DTO.*;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
@@ -72,12 +70,6 @@ public class BrandController {
             return ResponseEntity.notFound().build();
         }
 
-        List<Drink> drinks = existingBrand.getDrinks();
-        if(drinks!=null && !drinks.isEmpty())
-        {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("Cannot delete brand with associated drinks.");
-        }
         brandService.deleteBrand(name);
         return ResponseEntity.noContent().build();
     }
