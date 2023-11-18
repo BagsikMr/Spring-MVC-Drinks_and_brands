@@ -4,16 +4,20 @@
 localhost
 
 ### GET all brands
-GET http://localhost:8080/api/brands
+GET http://localhost:8082/api/brands
 Accept: application/json
 
-### GET brand by name
-GET http://localhost:8080/api/brands/Pepsi
+### GET single brand by name
+GET http://localhost:8082/api/brands/Pepsi
+Accept: application/json
+
+### GET single brand by name, not existing
+GET http://localhost:8082/api/brands/DrPepper
 Accept: application/json
 
 ### POST (create) a new brand
 
-POST http://localhost:8080/api/brands
+POST http://localhost:8082/api/brands
 Content-Type: application/json
 Accept: application/json
 
@@ -23,7 +27,7 @@ Accept: application/json
 }
 
 ### PUT (update) a brand by name
-PUT http://localhost:8080/api/brands/Fanta
+PUT http://localhost:8082/api/brands/Fanta
 Content-Type: application/json
 Accept: application/json
 
@@ -33,4 +37,4 @@ Accept: application/json
 }
 
 ### DELETE a brand by name
-DELETE http://localhost:8080/api/brands/Pepsi
+DELETE http://localhost:8082/api/brands/Pepsi
