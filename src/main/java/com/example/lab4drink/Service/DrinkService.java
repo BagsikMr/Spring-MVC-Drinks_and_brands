@@ -25,12 +25,10 @@ public class DrinkService {
         return drinkRepository.findAll();
     }
 
-    public Drink getDrinkById(UUID id){
-        return drinkRepository.findById(id).orElse(null);
-    }
-    public Drink getDrinkByName(String name)
-    {
-        return drinkRepository.findByName(name);
+    public Optional<List<Drink>> getAllByBrand(UUID id){return brandRepository.findById(id).map(drinkRepository::findByBrand);}
+
+    public Optional<Drink> getDrinkById(UUID id){
+        return drinkRepository.findById(id);
     }
 
     public void createDrink(Drink drink){
@@ -45,14 +43,23 @@ public class DrinkService {
             drinkRepository.save(updatedDrink);
         }
     }
-
-    public void updateDrink(String name, Drink updatedDrink)
+    public void updateDrink(Drink newDrink)
     {
-        UUID id = drinkRepository.findByName(name).getId();
-        if(drinkRepository.existsById(id))
+        UUID id = newDrink.getId();
+        Optional<Drink> tempDrink = drinkRepository.findById(id);
+
+        if(tempDrink.isPresent()) {
+            Drink oldDrink = tempDrink.get();
+
+            oldDrink.setName(newDrink.getName());
+            oldDrink.setPrice(newDrink.getPrice());
+            oldDrink.setYear(newDrink.getYear());
+
+            drinkRepository.save(oldDrink);
+        }
+        else
         {
-            updatedDrink.setId(id);
-            drinkRepository.save(updatedDrink);
+            System.out.println("Error 404 drink not found xd");
         }
     }
 
@@ -66,19 +73,6 @@ public class DrinkService {
                 brandRepository.save(brand);
             }
             drinkRepository.deleteById(id);
-        }
-    }
-
-    public void deleteDrink(String name)
-    {
-        Drink drink = drinkRepository.findByName(name);
-        if(drink!=null) {
-            Brand brand = drink.getBrand();
-            if (brand != null) {
-                brand.getDrinks().remove(drink);
-                brandRepository.save(brand);
-            }
-            drinkRepository.deleteById(drink.getId());
         }
     }
 

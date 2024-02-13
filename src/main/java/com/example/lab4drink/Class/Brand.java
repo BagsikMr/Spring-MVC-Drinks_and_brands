@@ -14,10 +14,10 @@ import java.util.*;
 public class Brand implements Serializable{
 
     @Id
-    @GeneratedValue(generator = "UUID")
     private UUID id;
 
-    @OneToMany(mappedBy = "brand", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Drink> drinks;
 
 }

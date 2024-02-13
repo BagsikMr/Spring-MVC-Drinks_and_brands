@@ -12,7 +12,7 @@ import java.util.*;
 public class DrinkReadDTO implements Serializable {
     private UUID id;
     private String name;
-    private Brand brand;
+    private BrandReadDTO brand;
     private int price;
     private String year;
 }

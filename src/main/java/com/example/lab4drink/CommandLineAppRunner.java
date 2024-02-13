@@ -27,12 +27,10 @@ public class CommandLineAppRunner implements CommandLineRunner{
     public void run(String... args) {
         Scanner scanner = new Scanner(System.in);
         boolean isRunning = true;
-        String brandName;
+        UUID brandId;
 
         while (isRunning) {
-            System.out.println("list_drinks - List all drinks");
-            System.out.println("add_drink - Add a new drink");
-            System.out.println("delete_drink - Delete an existing drink");
+            System.out.println("list_drinks - wiesz co");
             System.out.println("exit - Stop the application");
 
             System.out.print("Enter a command: ");
@@ -42,40 +40,6 @@ public class CommandLineAppRunner implements CommandLineRunner{
 
                 case "list_drinks":
                     System.out.println(drinkService.getAllDrinks());
-                    break;
-
-                case "add_drink":
-                    System.out.print("Enter name: ");
-                    String name = scanner.next();
-                    System.out.print("Enter brand name: ");
-                    brandName = scanner.next();
-                    Brand brand = brandService.getBrandByName(brandName);
-                    if(brand == null)
-                    {
-                        System.out.println("Brand with this name does not exist.");
-                        break;
-                    }
-                    System.out.print("Enter price: ");
-                    int price = scanner.nextInt();
-                    System.out.print("Enter year: ");
-                    String year = scanner.next();
-
-                    Drink newDrink = Drink.builder()
-                            .id(UUID.randomUUID())
-                            .name(name)
-                            .brand(brand)
-                            .price(price)
-                            .year(year)
-                            .build();
-                    drinkService.createDrink(newDrink);
-                    System.out.println("Drink added.");
-                    break;
-
-                case "delete_drink":
-                    System.out.print("Enter drink name: ");
-                    String deleteDrinkName = scanner.next();
-                    drinkService.deleteDrink(deleteDrinkName);
-                    System.out.println("Drink deleted.");
                     break;
 
                 case "exit":

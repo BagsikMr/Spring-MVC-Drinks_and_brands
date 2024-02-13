@@ -10,6 +10,4 @@ import java.util.*;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class BrandReadDTO implements Serializable {
     private UUID id;
-    private String name;
-    private String country;
 }

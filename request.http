@@ -1,17 +1,17 @@
 ### GET all drinks
-GET http://localhost:8080/api/drinks
+GET http://localhost:8081/api/drinks
 Accept: application/json
 
 ### GET a drink by name
-GET http://localhost:8080/api/drinks/Fanta_orange
+GET http://localhost:8081/api/drinks/name/Fanta_orange
 Accept: application/json
 
 ### GET a drink by name, non-existing
-GET http://localhost:8080/api/drinks/Fanta_grape
+GET http://localhost:8081/api/drinks/name/Fanta_grape
 Accept: application/json
 
 ### POST (create) a new drink
-POST http://localhost:8080/api/drinks
+POST http://localhost:8081/api/drinks
 Content-Type: application/json
 Accept: application/json
 
@@ -23,7 +23,7 @@ Accept: application/json
 }
 
 ### PUT (update) a drink by name
-PUT http://localhost:8080/api/drinks/Fanta_orange
+PUT http://localhost:8081/api/drinks/name/Fanta_orange
 Content-Type: application/json
 Accept: application/json
 
@@ -34,4 +34,4 @@ Accept: application/json
 }
 
 ### DELETE a drink by name
-DELETE http://localhost:8080/api/drinks/Fanta
+DELETE http://localhost:8081/api/drinks/name/Fanta

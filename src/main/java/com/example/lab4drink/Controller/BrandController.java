@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -23,13 +24,13 @@ public class BrandController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteBrand(@PathVariable UUID id) {
 
-        Brand existingBrand = brandService.getBrandById(id);
-        if(existingBrand == null)
+        Optional<Brand> existingBrand = brandService.getBrandById(id);
+        if(existingBrand.isEmpty())
         {
             return ResponseEntity.notFound().build();
         }
 
-        List<Drink> drinks = existingBrand.getDrinks();
+        List<Drink> drinks = existingBrand.get().getDrinks();
         if(drinks!=null && !drinks.isEmpty())
         {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
@@ -38,5 +39,12 @@ public class BrandController {
         brandService.deleteBrand(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}/drinks")
+    public void putBrand(@PathVariable UUID id)
+    {
+        brandService.createBrand(id);
+    }
+
 
 }
