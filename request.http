@@ -3,12 +3,12 @@ GET http://localhost:8082/api/brands
 Accept: application/json
 
 ### GET single brand by name
-GET http://localhost:8082/api/brands/Pepsi
+GET http://localhost:8082/api/brands/name/Pepsi
 Accept: application/json
 
 ### GET single brand by name, not existing
-GET http://localhost:8082/api/brands/DrPepper
+GET http://localhost:8082/api/brands/name/DrPepper
 Accept: application/json
 
 ### DELETE a brand by name
-DELETE http://localhost:8082/api/brands/Pepsi
+DELETE http://localhost:8082/api/brands/name/Pepsi

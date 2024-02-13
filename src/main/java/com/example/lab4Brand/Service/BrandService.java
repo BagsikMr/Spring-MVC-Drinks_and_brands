@@ -26,12 +26,9 @@ public class BrandService {
     public Optional<Brand> getBrandById(UUID id) {
         return brandRepository.findById(id);
     }
-    public Brand getBrandByName(String name)
-    {
-        return brandRepository.findByName(name);
-    }
 
     public void createBrand(Brand brand) {
+        brandEventRepository.create(brand);
         brandRepository.save(brand);
     }
 
@@ -41,34 +38,16 @@ public class BrandService {
             brandRepository.save(updatedBrand);
         }
     }
-    public void updateBrand(String name, Brand updatedBrand) {
-        UUID id = brandRepository.findByName(name).getId();
-        Brand existingBrand = brandRepository.findByName(name);
-        if(existingBrand != null)
-        {
-            updatedBrand.setId(existingBrand.getId());
-            existingBrand.setName(updatedBrand.getName());
-            existingBrand.setCountry(updatedBrand.getCountry());
-
-            brandRepository.save(existingBrand);
-        }
-
-    }
 
     public void deleteBrand(UUID id) {
         Brand brand = brandRepository.findById(id).orElse(null);
         if (brand != null) {
             brandRepository.deleteById(id);
-            brandEventRepository.deleteBrand(brand.getId());
+            brandEventRepository.deleteBrand(id);
         }
     }
-    public void deleteBrand(String name) {
-        Brand brand = brandRepository.findByName(name);
-        if (brand != null) {
-            brandRepository.deleteById(brand.getId());
-            brandEventRepository.deleteBrand(brand.getId());
-        }
-    }
+
+    public void save(Brand brand){brandRepository.save(brand);}
 
 
 }

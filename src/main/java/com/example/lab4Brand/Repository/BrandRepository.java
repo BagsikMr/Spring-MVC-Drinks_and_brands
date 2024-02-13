@@ -9,6 +9,6 @@ import java.util.*;
 @Repository
 public interface BrandRepository extends JpaRepository<Brand, UUID> { ;
     List<Brand> findByCountry(String country);
-    Brand findByName(String name);
+    Optional<Brand> findByName(String name);
     void deleteBrandByName(String name);
 }

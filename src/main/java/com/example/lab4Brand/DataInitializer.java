@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 public class DataInitializer implements InitializingBean{
 
@@ -33,9 +35,9 @@ public class DataInitializer implements InitializingBean{
                 .country("USA")
                 .build();
 
-        brandService.createBrand(Pepsi);
-        brandService.createBrand(Fanta);
-        brandService.createBrand(CocaCola);
+        brandService.save(Pepsi);
+        brandService.save(Fanta);
+        brandService.save(CocaCola);
 
     }
 }
